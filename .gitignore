@@ -1,3 +1,4 @@
-.pio
-.job
-.pro
+*.pio
+*.job
+*.pro
+*.s#?
