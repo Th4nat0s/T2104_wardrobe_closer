@@ -21,7 +21,7 @@
                                ATMEL Attiny25 / (ARDUINO)
 
                                          +-\/-+
-        PCINT5/RESET/ADC0/dW        PB5 1|    |8 VCC
+        PCINT5/RESET/ADC0/dW        PB5 1|*   |8 VCC
  PCINT3/XTAL1/CLKI/OC1B/ADC3 (A3/3) PB3 2|    |7 PB2 (A1/2) MISO/DO/AIN1/OC0B/OC1A/PCINT1
  PCINT4/XTAL2/CLKO/OC1B/ADC2 (A2/4) PB4 3|    |6 PB1 (1)    MISO/DO/AIN1/OC0B/OC1A/PCINT1
                                     GND 4|    |5 PB0 (0)    MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0
@@ -37,7 +37,6 @@ https://enavarro.eu/exploration-des-sleep-mode-du-attiny85.html
 
 #include <Arduino.h>
 #include <avr/sleep.h>
-
 
 // Connectique
 // Connect to input of TRCS5000
@@ -163,9 +162,9 @@ void main_loop()
      Serial.println("Alert Door Open");
      Serial.flush();
      #endif
-     tone(BEEP, 600, 500);  // Tone 1, 0,5 Sec.
+     tone(BEEP, 2600, 500);  // Tone 1, 0,5 Sec.
      delay(500);
-     tone(BEEP, 400, 500); // Tone 2, 0,5 Sec
+     tone(BEEP, 1500, 500); // Tone 2, 0,5 Sec
      delay(1000);          // Silence 0,5 Sec.
      read_sensor();
     }
