@@ -1,7 +1,7 @@
 WardRobe CLOSER
 ===============
 
-Dectect open doors and Bip
+Detect open doors and Bip
 --------------------------
 
 ### Arduino
@@ -11,6 +11,12 @@ arduino framework
 ### Attiny84
 SPI Through BusPirate 
 arduino framework 
+
+Consumption
+-----------
+On Attiny25 @ 1Mhz  
+Sleeping: 6,6µA  
+Beeping : 1.2mA  
 
 Tips
 ----
