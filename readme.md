@@ -1,5 +1,6 @@
 WardRobe CLOSER
 ===============
+![plot](./Hardware/proto.png)
 
 Detect open doors and Bip
 --------------------------
@@ -26,7 +27,5 @@ Tips
 ----
 `./serial` launch serial console through buspirate  
 `pio run -t fuses` set the fuses  
-`pio run -t upload -e release|uno` upload  a specific release version without serial debug  
+`pio run -t upload -e atiny25` upload  a specific release version without serial debug  
 `pio platform update --dry-run` check for updates  
-
-![plot](./Hardware/proto.png)
