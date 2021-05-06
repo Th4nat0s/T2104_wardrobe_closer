@@ -22,7 +22,7 @@
 
                                          +-\/-+
         PCINT5/RESET/ADC0/dW        PB5 1|*   |8 VCC
- PCINT3/XTAL1/CLKI/OC1B/ADC3 (A3/3) PB3 2|    |7 PB2 (A1/2) MISO/DO/AIN1/OC0B/OC1A/PCINT1
+ PCINT3/XTAL1/CLKI/OC1B/ADC3 (A3/3) PB3 2|    |7 PB2 (A1/2) SCK/SCL/USKC/TO/PCINT2
  PCINT4/XTAL2/CLKO/OC1B/ADC2 (A2/4) PB4 3|    |6 PB1 (1)    MISO/DO/AIN1/OC0B/OC1A/PCINT1
                                     GND 4|    |5 PB0 (0)    MOSI/DI/SDA/AIN0/OC0A/OC1A/AREF/PCINT0
                                          +----+
@@ -49,6 +49,8 @@ https://enavarro.eu/exploration-des-sleep-mode-du-attiny85.html
 // To Buzzer
 #define BEEP 4
 
+// To Battery Led
+#define LED 1
 
 // Variables
 int view;  // DAC read for sensor
@@ -110,8 +112,14 @@ void setup()
   Serial.println("System Start");
   Serial.flush();
   #endif
-  pinMode(EMT,OUTPUT);
+  pinMode(LED,OUTPUT);
   setup_watchdog(time_base); // how many ~ Sec for 1 sleep loop.
+  for (int i = 1; i <= 15; i++) {
+    digitalWrite(LED,HIGH);
+    delay(500);
+    digitalWrite(LED,LOW);
+    delay(500);
+    }
 }
 
 void read_sensor()
@@ -141,6 +149,7 @@ void read_sensor()
 void main_loop()
 {
   pinMode(EMT,OUTPUT);  // Reactivate out port
+  pinMode(LED,OUTPUT);  // Reactivate out port
   delayMicroseconds(500);
   read_sensor();
   #ifdef __PLATFORMIO_BUILD_DEBUG__
@@ -165,10 +174,11 @@ void main_loop()
      tone(BEEP, 2600, 500);  // Tone 1, 0,5 Sec.
      delay(500);
      tone(BEEP, 1500, 500); // Tone 2, 0,5 Sec
-     delay(1000);          // Silence 0,5 Sec.
+     delay(1500);          // Silence 1 Sec.
      read_sensor();
     }
   pinMode(EMT,INPUT);  // Activate port In to lower consumpion
+  pinMode(LED,INPUT);  // Activate port In to lower consumpion
 }
 
 // set system into the sleep state
